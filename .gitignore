@@ -1,2 +1,5 @@
 # Visual Studio Code
 .vscode/settings.json
+
+# Generated files
+bin

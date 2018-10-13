@@ -1,0 +1,3 @@
+#!/bin/bash
+cd $GGZYNC_HOME
+pipenv run python init.py

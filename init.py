@@ -1,6 +1,8 @@
-from colorama import Fore, Style, init
 from os import remove
 from sys import platform
+
+from colorama import Fore, Style, init
+
 from main import error, is_configurated, check_dependencies, warning
 
 init(autoreset=True)

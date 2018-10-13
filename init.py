@@ -1,5 +1,5 @@
 from os import chmod, mkdir, remove, system
-from os.path import abspath, expanduser
+from os.path import abspath, exists, expanduser
 from sys import platform
 
 from colorama import Fore, Style, init
@@ -19,7 +19,8 @@ def create_scripts_linux():
 cd $GGZYNC_HOME
 pipenv run python main.py $@
 """
-  mkdir('bin')
+  if not exists('bin'):
+    mkdir('bin')
   with open('bin/ggz', 'w') as script_file:
     script_file.write(script) 
   

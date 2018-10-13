@@ -12,7 +12,7 @@ def error(message):
   print(Fore.RED + Style.BRIGHT + message)
 
 def is_configurated():
-  return False
+  return True
 
 def check_dependencies():
   if not got_git():

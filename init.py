@@ -1,11 +1,12 @@
 from colorama import Fore, Style, init
+from os import remove
 from sys import platform
 from main import error, is_configurated, check_dependencies, warning
 
 init(autoreset=True)
 
 def auto_delete():
-  pass
+  remove('init.py')
 
 def create_scripts_linux():
   pass

@@ -1,3 +1,5 @@
+from sys import argv
+
 from colorama import Fore, init, Style
 
 init(autoreset=True)
@@ -21,3 +23,9 @@ def check_dependencies():
 
 def got_git():
   return True
+
+if __name__ == '__main__':
+  if '--version' in argv or '-V' in argv:
+    print('GGZync 0.0.1')
+    exit(0)
+  

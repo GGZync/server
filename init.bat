@@ -1,2 +1,3 @@
 @echo off
-pipenv run python init.py
+call pipenv run python init.py
+@echo on

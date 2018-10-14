@@ -77,7 +77,7 @@ def register_to_path_windows():
 
   run([*query, new_path], capture_output=True)
   # Broadcast WM_SETTINGCHANGE and set %GGZYNC_HOME%
-  run(['setx', '%GGZYNC_HOME%', abspath('.')], capture_output=True)
+  run(['setx', 'GGZYNC_HOME', abspath('.')], capture_output=True)
 
 def prepare_scripts():
   if platform.startswith('linux'):

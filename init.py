@@ -11,7 +11,8 @@ init(autoreset=True)
 def auto_delete():
   remove('init.py')
   remove('init')
-  remove('init.bat')
+  if platform.startswith('linux'):
+    remove('init.bat')
 
 def create_script_file(script, filename):
   if not exists('bin'):

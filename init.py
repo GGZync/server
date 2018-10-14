@@ -1,5 +1,6 @@
 from os import chmod, mkdir, remove, system
 from os.path import abspath, exists, expanduser
+from subprocess import run
 from sys import platform
 
 from colorama import Fore, Style, init
@@ -66,15 +67,14 @@ def register_to_path_linux():
   system('source ~/.bashrc')
 
 def register_to_path_windows():
-  from subprocess import run
-  from os.path import expandvars
-
   new_folder = abspath('./bin')
-  current_path = expandvars('%PATH%')
+  query = 'reg:query:HKCU\\Environment:/v:Path'.split(':')
+  output = run(query, capture_output=True).stdout.decode('utf8')
+  reg_type = output.split('Path')[1].strip().split(' ')[0]
+  current_path = output.split(reg_type)[1].strip()
   new_path = current_path + new_folder + ';'
 
-  query_string = 'reg:add:HKCU\\Environment:/f:/v:Path:/t:REG_SZ:/d'
-  query = query_string.split(':')
+  query = 'reg:add:HKCU\\Environment:/f:/v:Path:/t:REG_SZ:/d'.split(':')
 
   run([*query, new_path], capture_output=True)
   # Broadcast WM_SETTINGCHANGE and set %GGZYNC_HOME%

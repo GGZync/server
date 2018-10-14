@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1153574f98fba5427af88cc5898744520373efd343c1437b7505b0bdc87e2d95"
+            "sha256": "f020419820d5a9ef5978e38accd1ef7e8cb8b1e1c2ebab1c606754e1085937f3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,7 +15,16 @@
             }
         ]
     },
-    "default": {},
+    "default": {
+        "colorama": {
+            "hashes": [
+                "sha256:a3d89af5db9e9806a779a50296b5fdb466e281147c2c235e8225ecc6dbf7bbf3",
+                "sha256:c9b54bebe91a6a803e0772c8561d53f2926bfeb17cd141fbabcb08424086595c"
+            ],
+            "index": "pypi",
+            "version": "==0.4.0"
+        }
+    },
     "develop": {
         "astroid": {
             "hashes": [
@@ -31,13 +40,20 @@
             "index": "pypi",
             "version": "==1.4"
         },
+        "colorama": {
+            "hashes": [
+                "sha256:a3d89af5db9e9806a779a50296b5fdb466e281147c2c235e8225ecc6dbf7bbf3",
+                "sha256:c9b54bebe91a6a803e0772c8561d53f2926bfeb17cd141fbabcb08424086595c"
+            ],
+            "index": "pypi",
+            "version": "==0.4.0"
+        },
         "isort": {
             "hashes": [
                 "sha256:1153601da39a25b14ddc54955dbbacbb6b2d19135386699e2ad58517953b34af",
                 "sha256:b9c40e9750f3d77e6e4d441d8b0266cf555e7cdabdcff33c4fd06366ca761ef8",
                 "sha256:ec9ef8f4a9bc6f71eec99e1806bfa2de401650d996c59330782b89a5555c1497"
             ],
-            "markers": "python_version != '3.3.*' and python_version >= '2.7' and python_version != '3.2.*' and python_version != '3.1.*' and python_version != '3.0.*'",
             "version": "==4.3.4"
         },
         "lazy-object-proxy": {

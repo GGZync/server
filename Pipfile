@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+colorama = "*"
 
 [dev-packages]
 pylint = "*"
 "autopep8" = "*"
 rope = "*"
-colorama = "*"
 
 [requires]
 python_version = "3.7"

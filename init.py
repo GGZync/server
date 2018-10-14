@@ -13,18 +13,28 @@ def auto_delete():
   remove('init')
   remove('init.bat')
 
+def create_script_file(script, filename):
+  if not exists('bin'):
+    mkdir('bin')
+  with open('bin/{}'.format(filename), 'w') as script_file:
+    script_file.write(script) 
+
 def create_scripts_linux():
   script = \
 """#!/bin/bash
 cd $GGZYNC_HOME
 pipenv run python main.py $@
 """
-  if not exists('bin'):
-    mkdir('bin')
-  with open('bin/ggz', 'w') as script_file:
-    script_file.write(script) 
-  
+  create_script_file(script, 'ggz')
   chmod('./bin/ggz', 0o777)
+
+def create_scripts_windows():
+  script = \
+"""@echo off
+cd %GGZYNC_HOME%
+pipenv run python main.py %*
+"""
+  create_script_file(script, 'ggz.bat')
 
 def register_to_path_linux():
   bashrc_path = expanduser('~/.bashrc')
@@ -46,17 +56,28 @@ def register_to_path_linux():
   if not 'export GGZYNC_HOME=' in path_file_contents:
     appendLineIfNeeded()
     path_file_contents += ggzync_home_export
+  else:
+    warning('The GGZYNC_HOME has been set before. Please verify your .bashrc file.')
 
   with open(bashrc_path, 'w') as path_file:
     path_file.write(path_file_contents)
   
   system('source ~/.bashrc')
 
-def create_scripts_windows():
-  pass
-
 def register_to_path_windows():
-  pass
+  from subprocess import run
+  from os.path import expandvars
+
+  new_folder = abspath('./bin')
+  current_path = expandvars('%PATH%')
+  new_path = current_path + new_folder + ';'
+
+  query_string = 'reg:add:HKCU\\Environment:/f:/v:Path:/t:REG_SZ:/d'
+  query = query_string.split(':')
+
+  run([*query, new_path], capture_output=True)
+  # Broadcast WM_SETTINGCHANGE and set %GGZYNC_HOME%
+  run(['setx', '%GGZYNC_HOME%', abspath('.')], capture_output=True)
 
 def prepare_scripts():
   if platform.startswith('linux'):
